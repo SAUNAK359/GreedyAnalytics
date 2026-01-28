@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  api:
+    build: ./docker/Dockerfile.api
+  redis:
+    image: redis
+  postgres:
+    image: postgres

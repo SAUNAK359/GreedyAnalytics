@@ -1,0 +1,4 @@
+replicaCount: 3
+image:
+  api: analytics-llm-api:latest
+  ui: analytics-llm-ui:latest
