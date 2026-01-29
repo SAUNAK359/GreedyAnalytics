@@ -1,0 +1,32 @@
+Analytics@LLM — How to Use
+
+1) Upload datasets & documents
+- Open the Ingestion section.
+- Upload CSV, XLS/XLSX, Parquet, PDF, Word, PowerPoint, SAP/Tally exports.
+- Mixed formats are supported; schema will be inferred automatically.
+
+2) Ask questions via Copilot
+- Click the floating 🤖 Copilot icon to open the chat panel.
+- Ask questions in natural language.
+- Copilot plans → executes → verifies, then mutates the dashboard via MCP.
+
+3) Mutate dashboards
+- Copilot never returns charts directly.
+- It generates MCP updates that render live in the dashboard canvas.
+
+4) Version & rollback
+- Each MCP change creates a new version.
+- Use the Versioning panel to roll back or compare versions.
+
+5) Deploy dashboards
+- MCP versions are deployable artifacts.
+- Export MCP JSON for governance review and production rollout.
+
+6) Governance behavior
+- PII detection is automatic.
+- Column sensitivity is tagged.
+- Role-based redaction is enforced.
+
+Notes
+- API keys can be set in Streamlit secrets or entered in the top bar.
+- No static dashboards; everything is live and explainable.

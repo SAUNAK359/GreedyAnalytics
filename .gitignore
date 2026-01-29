@@ -18,3 +18,4 @@ __pycache__/
 
 # IDE
 .vscode/
+test_bcrypt_speed.py
