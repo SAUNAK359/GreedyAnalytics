@@ -59,7 +59,7 @@ echo -e "\n${GREEN}API is Online!${NC}"
 
 # 4. Start Frontend
 echo -e "${BLUE}[4/4] Starting Streamlit Dashboard...${NC}"
-nohup streamlit run /workspaces/GreedyAnalytics/analytics_llm/app.py --server.port 8501 --server.address 0.0.0.0 > ui.log 2>&1 &
+nohup streamlit run /workspaces/GreedyAnalytics/analytics_frontend/app.py --server.port 8501 --server.address 0.0.0.0 > ui.log 2>&1 &
 UI_PID=$!
 echo -e "${GREEN}Frontend started (PID: $UI_PID). Logs at ui.log${NC}"
 echo -e "${GREEN}Application is running!${NC}"
