@@ -1,2 +1,15 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary
+redis
+requests
+python-multipart
+PyJWT
+bcrypt
+chromadb
+openai
+google-generativeai
 opentelemetry-sdk
 opentelemetry-instrumentation-fastapi
+opentelemetry-exporter-otlp

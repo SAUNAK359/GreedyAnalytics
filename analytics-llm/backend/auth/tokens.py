@@ -1,14 +1,13 @@
 import jwt
 from datetime import datetime, timedelta
 from typing import Dict
+from core.config import settings
 
-# IMPORTANT:
-# In production, load this from ENV or a secrets manager (Vault, AWS Secrets Manager)
-JWT_SECRET = "CHANGE_ME_IN_PROD"
-JWT_ALGORITHM = "HS256"
+JWT_SECRET = settings.JWT_SECRET
+JWT_ALGORITHM = settings.JWT_ALGORITHM
 
-ACCESS_TOKEN_TTL_MIN = 60        # 1 hour
-REFRESH_TOKEN_TTL_DAYS = 7       # 7 days
+ACCESS_TOKEN_TTL_MIN = settings.ACCESS_TOKEN_TTL_MIN
+REFRESH_TOKEN_TTL_DAYS = settings.REFRESH_TOKEN_TTL_DAYS
 
 
 class JWTError(Exception):

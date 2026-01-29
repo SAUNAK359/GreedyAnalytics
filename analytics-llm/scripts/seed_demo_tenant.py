@@ -8,7 +8,7 @@ def seed():
     Base.metadata.create_all(bind=engine)
     db = SessionLocal()
 
-    tenant_id = str(uuid.uuid4())
+    tenant_id = "default"
 
     tenant = Tenant(
         id=tenant_id,
@@ -22,21 +22,21 @@ def seed():
             email="admin@demo.com",
             role="admin",
             tenant_id=tenant_id,
-            password=hash_password("admin123")
+            hashed_password=hash_password("Admin123!")
         ),
         User(
             id=str(uuid.uuid4()),
             email="analyst@demo.com",
             role="analyst",
             tenant_id=tenant_id,
-            password=hash_password("analyst123")
+            hashed_password=hash_password("Analyst123!")
         ),
         User(
             id=str(uuid.uuid4()),
             email="viewer@demo.com",
             role="viewer",
             tenant_id=tenant_id,
-            password=hash_password("viewer123")
+            hashed_password=hash_password("Viewer123!")
         )
     ]
 
