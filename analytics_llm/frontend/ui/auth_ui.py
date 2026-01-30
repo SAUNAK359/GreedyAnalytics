@@ -12,6 +12,15 @@ def _handle_login(email: str, password: str) -> None:
         st.success("Logged in")
     except requests.RequestException as exc:
         msg = str(exc)
+        error_details = ""
+        if exc.response is not None:
+            try:
+                detail = exc.response.json().get("detail")
+                if detail:
+                    error_details = f": {detail}"
+            except Exception:
+                pass
+
         if "Name or service not known" in msg or "Failed to resolve" in msg:
             st.error(
                 "Connection failed: Cannot resolve backend hostname. "
@@ -19,7 +28,7 @@ def _handle_login(email: str, password: str) -> None:
                 "If deployed, set 'API_URL' in secrets to your backend URL."
             )
         else:
-            st.error(f"Login failed: {exc}")
+            st.error(f"Login failed{error_details}")
 
 
 def _handle_register(email: str, password: str, tenant_id: str, tenant_name: str) -> None:
@@ -34,6 +43,16 @@ def _handle_register(email: str, password: str, tenant_id: str, tenant_name: str
         st.success("Registration successful. Please log in.")
     except requests.RequestException as exc:
         msg = str(exc)
+        error_details = ""
+        if exc.response is not None:
+            try:
+                # Try to get the detailed error message from the JSON response
+                detail = exc.response.json().get("detail")
+                if detail:
+                    error_details = f": {detail}"
+            except Exception:
+                pass
+
         if "Name or service not known" in msg or "Failed to resolve" in msg:
             st.error(
                 "Connection failed: Cannot resolve backend hostname. "
@@ -41,7 +60,7 @@ def _handle_register(email: str, password: str, tenant_id: str, tenant_name: str
                 "If deployed, set 'API_URL' in secrets to your backend URL."
             )
         else:
-            st.error(f"Registration failed: {exc}")
+            st.error(f"Registration failed{error_details}")
 
 
 def render_auth_ui() -> None:
