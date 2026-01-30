@@ -11,7 +11,15 @@ def _handle_login(email: str, password: str) -> None:
         st.session_state["user_role"] = data.get("user", {}).get("role", "viewer")
         st.success("Logged in")
     except requests.RequestException as exc:
-        st.error(f"Login failed: {exc}")
+        msg = str(exc)
+        if "Name or service not known" in msg or "Failed to resolve" in msg:
+            st.error(
+                "Connection failed: Cannot resolve backend hostname. "
+                "If running locally, ensure the backend is running. "
+                "If deployed, set 'API_URL' in secrets to your backend URL."
+            )
+        else:
+            st.error(f"Login failed: {exc}")
 
 
 def _handle_register(email: str, password: str, tenant_id: str, tenant_name: str) -> None:
@@ -25,7 +33,15 @@ def _handle_register(email: str, password: str, tenant_id: str, tenant_name: str
         })
         st.success("Registration successful. Please log in.")
     except requests.RequestException as exc:
-        st.error(f"Registration failed: {exc}")
+        msg = str(exc)
+        if "Name or service not known" in msg or "Failed to resolve" in msg:
+            st.error(
+                "Connection failed: Cannot resolve backend hostname. "
+                "If running locally, ensure the backend is running. "
+                "If deployed, set 'API_URL' in secrets to your backend URL."
+            )
+        else:
+            st.error(f"Registration failed: {exc}")
 
 
 def render_auth_ui() -> None:
