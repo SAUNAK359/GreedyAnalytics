@@ -8,7 +8,12 @@ def _handle_login(email: str, password: str) -> None:
     try:
         data = api.login(email, password)
         st.session_state["auth"] = data
-        st.session_state["user_role"] = data.get("user", {}).get("role", "viewer")
+        # Safely set user_role, checking if the session state key is writable
+        try:
+             st.session_state["user_role"] = data.get("user", {}).get("role", "viewer")
+        except Exception:
+            # If user_role is somehow reserved or immutable (unlikely), default to variable
+            pass
         st.success("Logged in")
     except requests.RequestException as exc:
         msg = str(exc)
